@@ -1,4 +1,4 @@
-package com.matheuscruzdev.bethehero;
+package com.matheuscruzdev.bethehero.resources;
 
 import java.util.List;
 
