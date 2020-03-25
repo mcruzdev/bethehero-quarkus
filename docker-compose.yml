@@ -1,0 +1,10 @@
+version: '3'
+
+services: 
+    bethehero.mongo:
+        image: mongo:3.6
+        restart: on-failure
+        ports: 
+            - "27017:27017"
+        environment: 
+            - MONGO_INIT_DATABASE=bethehero
