@@ -1,10 +1,13 @@
 version: '3'
 
 services: 
-    bethehero.mongo:
-        image: mongo:3.6
+    bethehero.mysql:
+        image: mysql:5.7
         restart: on-failure
         ports: 
-            - "27017:27017"
+            - "3307:3306"
         environment: 
-            - MONGO_INIT_DATABASE=bethehero
+            MYSQL_ROOT_PASSWORD: bethehero
+            MYSQL_DATABASE: bethehero
+            MYSQL_USER: bethehero
+            MYSQL_PASSWORD: bethehero

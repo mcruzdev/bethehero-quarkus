@@ -1,12 +1,18 @@
 package com.matheuscruzdev.bethehero.domain.entities;
 
-import org.bson.types.ObjectId;
-import io.quarkus.mongodb.panache.MongoEntity;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@MongoEntity(collection = "ongs")
+@Entity
+@Table(name = "ong") 
 public class ONG {
 
-    private ObjectId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String email;
     private String whatsapp;
@@ -16,8 +22,15 @@ public class ONG {
     /**
      * @return the id
      */
-    public ObjectId getId() {
+    public Long getId() {
         return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
@@ -28,10 +41,24 @@ public class ONG {
     }
 
     /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * @return the email
      */
     public String getEmail() {
         return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -42,6 +69,13 @@ public class ONG {
     }
 
     /**
+     * @param whatsapp the whatsapp to set
+     */
+    public void setWhatsapp(String whatsapp) {
+        this.whatsapp = whatsapp;
+    }
+
+    /**
      * @return the city
      */
     public String getCity() {
@@ -49,9 +83,23 @@ public class ONG {
     }
 
     /**
+     * @param city the city to set
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
      * @return the uf
      */
     public String getUf() {
         return uf;
+    }
+
+    /**
+     * @param uf the uf to set
+     */
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 }
