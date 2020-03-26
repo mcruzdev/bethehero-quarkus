@@ -24,7 +24,7 @@ public class ONGResourceTest {
 
     @Test
     @DataSet("ong.json")
-    public void listAll(){
+    public void index(){
         
         given()
             .when()

@@ -1,8 +1,13 @@
 package com.matheuscruzdev.bethehero.domain.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -20,6 +25,22 @@ public class ONG {
     private String whatsapp;
     private String city;
     private String uf;
+
+    protected ONG() {}
+
+    public ONG(String id, String name, String email, String whatsapp, String city, String uf, List<Incident> incidents) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.whatsapp = whatsapp;
+        this.city = city;
+        this.uf = uf;
+        this.incidents = incidents;
+    }
+    
+    @OneToMany
+    @JoinColumn(name = "ong_id")
+    private List<Incident> incidents = new ArrayList<>();
 
     /**
      * @return the id
@@ -103,5 +124,19 @@ public class ONG {
      */
     public void setUf(String uf) {
         this.uf = uf;
+    }
+
+    /**
+     * @return the incidents
+     */
+    public List<Incident> getIncidents() {
+        return incidents;
+    }
+
+    /**
+     * @param incidents the incidents to set
+     */
+    public void setIncidents(List<Incident> incidents) {
+        this.incidents = incidents;
     }
 }

@@ -7,11 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "incident")
-public class Incident implements Serializable{
+public class Incident implements Serializable {
 
     private static final long serialVersionUID = -7639522141268374332L;
 
@@ -21,6 +24,20 @@ public class Incident implements Serializable{
     private String title;
     private String description;
     private BigDecimal value;
+
+    @ManyToOne
+    @JsonIgnore
+    private ONG ong;
+
+    protected Incident() {}
+
+    public Incident(final Long id, final String title, final String description, final BigDecimal value, final ONG ong) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.value = value;
+        this.ong = ong;
+    }
 
     /**
      * @return the id
@@ -76,5 +93,19 @@ public class Incident implements Serializable{
      */
     public void setValue(BigDecimal value) {
         this.value = value;
+    }
+
+    /**
+     * @return the ong
+     */
+    public ONG getOng() {
+        return ong;
+    }
+
+    /**
+     * @param ong the ong to set
+     */
+    public void setOng(ONG ong) {
+        this.ong = ong;
     }
 }

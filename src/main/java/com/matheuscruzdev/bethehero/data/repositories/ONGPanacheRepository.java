@@ -7,4 +7,9 @@ import com.matheuscruzdev.bethehero.domain.repositories.contracts.ONGRepository;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 @ApplicationScoped
-public class ONGPanacheRepository implements PanacheRepository<ONG>, ONGRepository {}
+public class ONGPanacheRepository implements PanacheRepository<ONG>, ONGRepository {
+
+    public ONG findById(String authorization) {
+        return find("id", authorization).firstResult();
+    }
+}

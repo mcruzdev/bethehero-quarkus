@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 import com.matheuscruzdev.bethehero.data.repositories.ONGPanacheRepository;
 import com.matheuscruzdev.bethehero.domain.entities.ONG;
+import com.matheuscruzdev.bethehero.resources.dtos.ONGDTO;
 
 @Path("/ongs")
 @Produces(MediaType.APPLICATION_JSON)
@@ -31,9 +32,9 @@ public class ONGResource {
 
     @POST
     @Transactional
-    public Response create(ONG ong) {
+    public Response create(ONGDTO ong) {
 
-        repository.persist(ong);
+        repository.persist(ong.convert());
         return Response.ok(ong).status(201).build();
     }
 }
