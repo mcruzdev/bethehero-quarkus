@@ -2,7 +2,7 @@ package com.matheuscruzdev.bethehero;
 
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.RestAssured;
+import static io.restassured.RestAssured.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ public class ONGResourceTest {
     @DataSet("ong.json")
     public void listAll(){
         
-        RestAssured.given()
+        given()
             .when()
                 .get("/ongs")
             .then()
