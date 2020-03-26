@@ -1,15 +1,31 @@
 package com.matheuscruzdev.bethehero.data.repositories;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+
 import com.matheuscruzdev.bethehero.domain.entities.ONG;
 import com.matheuscruzdev.bethehero.domain.repositories.contracts.ONGRepository;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
+@Named(value = "ONGPanacheRepository")
 @ApplicationScoped
 public class ONGPanacheRepository implements PanacheRepository<ONG>, ONGRepository {
 
-    public ONG findById(String authorization) {
-        return find("id", authorization).firstResult();
+    @Override
+    public ONG getById(final String id) {
+        return find("id", id).firstResult();
+    }
+
+    @Override
+    public void insert(final ONG ong) {
+        persist(ong);
+    }
+
+    @Override
+    public List<ONG> getAll() {
+        return findAll().list();
     }
 }

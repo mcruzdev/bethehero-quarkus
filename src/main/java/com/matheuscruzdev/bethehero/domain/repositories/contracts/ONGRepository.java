@@ -1,6 +1,17 @@
 package com.matheuscruzdev.bethehero.domain.repositories.contracts;
 
+import java.util.List;
+
+import javax.enterprise.context.ApplicationScoped;
+
+import com.matheuscruzdev.bethehero.domain.entities.ONG;
+
 /**
  * ONGRepository
  */
-public interface ONGRepository {}
+@ApplicationScoped
+public interface ONGRepository {
+    ONG getById(String id);
+    void insert(ONG ong);
+    List<ONG> getAll();
+}

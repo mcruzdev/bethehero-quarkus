@@ -3,6 +3,7 @@ package com.matheuscruzdev.bethehero.resources;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -12,8 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.matheuscruzdev.bethehero.data.repositories.ONGPanacheRepository;
 import com.matheuscruzdev.bethehero.domain.entities.ONG;
+import com.matheuscruzdev.bethehero.domain.repositories.contracts.ONGRepository;
 import com.matheuscruzdev.bethehero.resources.dtos.ONGDTO;
 
 @Path("/ongs")
@@ -22,19 +23,20 @@ import com.matheuscruzdev.bethehero.resources.dtos.ONGDTO;
 public class ONGResource {
 
     @Inject
-    ONGPanacheRepository repository;
+    @Named("ONGPanacheRepository") 
+    ONGRepository repository;
 
     @GET
     public List<ONG> listAll() {
         
-        return repository.listAll();
+        return repository.getAll();
     }
 
     @POST
     @Transactional
     public Response create(ONGDTO ong) {
 
-        repository.persist(ong.convert());
+        repository.insert(ong.convert());
         return Response.ok(ong).status(201).build();
     }
 }
