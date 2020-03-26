@@ -14,4 +14,5 @@ public interface ONGRepository {
     ONG getById(String id);
     void insert(ONG ong);
     List<ONG> getAll();
+	void delete(String id);
 }

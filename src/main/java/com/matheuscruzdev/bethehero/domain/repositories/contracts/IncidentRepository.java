@@ -13,4 +13,5 @@ import com.matheuscruzdev.bethehero.domain.entities.Incident;
 public interface IncidentRepository {
     List<Incident> list();
     void insert(Incident incident);
+    void delete(Long id);
 }

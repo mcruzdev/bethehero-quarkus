@@ -1,18 +1,19 @@
 package com.matheuscruzdev.bethehero;
 
-import io.quarkus.test.common.QuarkusTestResource;
-import io.quarkus.test.junit.QuarkusTest;
-import static io.restassured.RestAssured.*;
-
-import org.junit.jupiter.api.Test;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import com.github.database.rider.cdi.api.DBRider;
 import com.github.database.rider.core.api.dataset.DataSet;
-import com.matheuscruzdev.bethehero.data.repositories.ONGPanacheRepository;
+import com.matheuscruzdev.bethehero.domain.repositories.contracts.ONGRepository;
 
-import static org.hamcrest.Matchers.is;
+import org.junit.jupiter.api.Test;
+
+import io.quarkus.test.common.QuarkusTestResource;
+import io.quarkus.test.junit.QuarkusTest;
 
 @DBRider
 @QuarkusTestResource(DatabaseDockerInitializer.class)
@@ -20,7 +21,8 @@ import static org.hamcrest.Matchers.is;
 public class ONGResourceTest {
 
     @Inject
-    ONGPanacheRepository repository;
+    @Named("ONGPanacheRepository")
+    ONGRepository repository;
 
     @Test
     @DataSet("ong.json")

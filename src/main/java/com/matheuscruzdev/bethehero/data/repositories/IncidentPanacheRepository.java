@@ -26,4 +26,9 @@ public class IncidentPanacheRepository implements PanacheRepository<Incident>, I
         persist(incident);
 
     }
+
+    @Override
+    public void delete(Long id) {
+        delete("id", id);
+    }
 }

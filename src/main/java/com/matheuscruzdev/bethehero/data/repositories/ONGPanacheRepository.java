@@ -28,4 +28,9 @@ public class ONGPanacheRepository implements PanacheRepository<ONG>, ONGReposito
     public List<ONG> getAll() {
         return findAll().list();
     }
+
+    @Override
+    public void delete(String id) {
+        delete("id", id);
+    }
 }
