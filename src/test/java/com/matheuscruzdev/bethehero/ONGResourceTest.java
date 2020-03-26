@@ -2,6 +2,8 @@ package com.matheuscruzdev.bethehero;
 
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.RestAssured;
+
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
@@ -10,6 +12,7 @@ import com.github.database.rider.cdi.api.DBRider;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.matheuscruzdev.bethehero.data.repositories.ONGPanacheRepository;
 
+import static org.hamcrest.Matchers.is;
 import org.junit.Assert;
 
 @DBRider
@@ -21,12 +24,15 @@ public class ONGResourceTest {
     ONGPanacheRepository repository;
 
     @Test
-    @DataSet("ong.xml")
+    @DataSet("ong.json")
     public void listAll(){
         
-        var count = repository.count();
-        Assert.assertEquals(1, count);
-
-        
+        RestAssured.given()
+            .when()
+                .get("/ongs")
+            .then()
+                .statusCode(200)
+                .assertThat()
+                .body("size()", is(3));
     }
 }

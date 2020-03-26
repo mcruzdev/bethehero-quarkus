@@ -23,7 +23,6 @@ public class DatabaseDockerInitializer implements QuarkusTestResourceLifecycleMa
         configuration.put("quarkus.datasource.url", DATABASE.getJdbcUrl());
         configuration.put("quarkus.datasource.username", DATABASE.getUsername());
         configuration.put("quarkus.datasource.password", DATABASE.getPassword());
-        System.out.println(DATABASE.getUsername());
         return configuration;
     }
 

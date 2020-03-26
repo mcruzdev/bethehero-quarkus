@@ -1,5 +1,5 @@
 CREATE TABLE `ong` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` VARCHAR(8) NOT NULL,
   `name` VARCHAR(200) NOT NULL,
   `email` VARCHAR(200) NOT NULL,
   `whatsapp` VARCHAR(30) NULL,

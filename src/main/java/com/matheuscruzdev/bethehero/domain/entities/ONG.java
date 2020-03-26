@@ -2,17 +2,19 @@ package com.matheuscruzdev.bethehero.domain.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "ong") 
 public class ONG {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GenericGenerator(strategy = "com.matheuscruzdev.bethehero.data.CodeIdentifierGenerator", name = "code")
+    @GeneratedValue(generator = "code")
+    private String id;
     private String name;
     private String email;
     private String whatsapp;
@@ -22,14 +24,14 @@ public class ONG {
     /**
      * @return the id
      */
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
