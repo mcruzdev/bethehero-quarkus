@@ -13,7 +13,6 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import com.matheuscruzdev.bethehero.data.repositories.ONGPanacheRepository;
 
 import static org.hamcrest.Matchers.is;
-import org.junit.Assert;
 
 @DBRider
 @QuarkusTestResource(DatabaseDockerInitializer.class)
