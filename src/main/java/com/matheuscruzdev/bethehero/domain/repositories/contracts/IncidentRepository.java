@@ -11,7 +11,7 @@ import com.matheuscruzdev.bethehero.domain.entities.Incident;
  */
 @ApplicationScoped
 public interface IncidentRepository {
-    List<Incident> list();
+    List<Incident> page(int page);
     void insert(Incident incident);
     void delete(Long id);
 }

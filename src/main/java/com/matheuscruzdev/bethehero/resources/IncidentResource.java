@@ -13,6 +13,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -36,16 +37,18 @@ public class IncidentResource {
   ONGRepository ONGRepository;
 
   @GET
-  public List<Incident> listAll() {
-    
-    return incidentRepository.list();
+  public List<Incident> listAll(@QueryParam(value = "page") Integer page) {
+
+    if (page == null) { page = Integer.valueOf(1); }
+
+    return incidentRepository.page(page);
   }
 
   @POST
   @Transactional
   public Response create(IncidentDTO incident, @HeaderParam("Authorization") final String authorization) {
 
-    var ONG = ONGRepository.getById(authorization);
+    final var ONG = ONGRepository.getById(authorization);
     
     incident.ong = ONGDTO.from(ONG);
     incidentRepository.insert(incident.convert());

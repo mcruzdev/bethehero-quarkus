@@ -37,6 +37,15 @@ public class ONG {
         this.uf = uf;
         this.incidents = incidents;
     }
+
+    private ONG(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public static ONG from(String id, String name) {
+        return new ONG(id, name);
+    }
     
     @OneToMany
     @JoinColumn(name = "ong_id")

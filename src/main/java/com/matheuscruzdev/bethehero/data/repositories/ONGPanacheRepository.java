@@ -1,6 +1,7 @@
 package com.matheuscruzdev.bethehero.data.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -32,5 +33,12 @@ public class ONGPanacheRepository implements PanacheRepository<ONG>, ONGReposito
     @Override
     public void delete(String id) {
         delete("id", id);
+    }
+
+    public Optional<ONG> getNameAndIdById(String id) {
+        return findAll().stream()
+            .filter(ong -> ong.getId().equals(id))
+            .map(ong -> ONG.from(ong.getId(), ong.getName()))
+            .findFirst();
     }
 }
