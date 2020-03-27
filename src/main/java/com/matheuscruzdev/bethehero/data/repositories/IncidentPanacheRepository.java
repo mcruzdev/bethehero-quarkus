@@ -16,23 +16,32 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 public class IncidentPanacheRepository implements PanacheRepository<Incident>, IncidentRepository {
 
     @Override
-    public List<Incident> page(int page) {
-        var offset = ((page - 1) * 5);
-
+    public List<Incident> getPageByOngId(final int page, final String ongId) {
+        
+        final var offset = ((page - 1) * 5);
         return findAll().stream()
+            .filter(incident -> incident.getOng().getId().equals(ongId))
             .skip(offset)
             .limit(5)
             .collect(Collectors.toList());
     }
 
     @Override
-    public void insert(Incident incident) {
-        
+    public void insert(final Incident incident) {
+
         persist(incident);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(final Long id) {
+        
         delete("id", id);
+    }
+
+    public long countIncidentsByOngId(String ongId) {
+
+        return findAll().stream()
+            .filter(incident -> incident.getOng().getId().equals(ongId))
+            .count();
     }
 }

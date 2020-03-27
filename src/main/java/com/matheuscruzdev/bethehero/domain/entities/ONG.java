@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -25,6 +27,11 @@ public class ONG {
     private String whatsapp;
     private String city;
     private String uf;
+    
+    @OneToMany
+    @JsonIgnore
+    @JoinColumn(name = "ong_id")
+    private List<Incident> incidents = new ArrayList<>();
 
     protected ONG() {}
 
@@ -46,10 +53,6 @@ public class ONG {
     public static ONG from(String id, String name) {
         return new ONG(id, name);
     }
-    
-    @OneToMany
-    @JoinColumn(name = "ong_id")
-    private List<Incident> incidents = new ArrayList<>();
 
     /**
      * @return the id

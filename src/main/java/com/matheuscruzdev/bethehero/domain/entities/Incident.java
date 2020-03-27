@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "incident")
 public class Incident implements Serializable {
@@ -26,7 +24,6 @@ public class Incident implements Serializable {
     private BigDecimal value;
 
     @ManyToOne
-    @JsonIgnore
     private ONG ong;
 
     protected Incident() {}

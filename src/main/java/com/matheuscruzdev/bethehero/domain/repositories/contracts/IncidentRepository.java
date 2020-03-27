@@ -11,7 +11,8 @@ import com.matheuscruzdev.bethehero.domain.entities.Incident;
  */
 @ApplicationScoped
 public interface IncidentRepository {
-    List<Incident> page(int page);
+    List<Incident> getPageByOngId(int page, String ongId);
     void insert(Incident incident);
     void delete(Long id);
+	long countIncidentsByOngId(String ongId);
 }
