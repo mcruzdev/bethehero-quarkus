@@ -25,8 +25,5 @@ public class CodeIdentifierGenerator implements IdentifierGenerator {
         }
 
         return builder.toString().toLowerCase();
-
     }
-
-    
 }

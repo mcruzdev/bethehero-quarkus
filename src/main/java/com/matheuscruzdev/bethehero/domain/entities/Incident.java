@@ -29,6 +29,7 @@ public class Incident implements Serializable {
     protected Incident() {}
 
     public Incident(final Long id, final String title, final String description, final BigDecimal value, final ONG ong) {
+
         this.id = id;
         this.title = title;
         this.description = description;
@@ -40,6 +41,7 @@ public class Incident implements Serializable {
      * @return the id
      */
     public Long getId() {
+
         return id;
     }
 
@@ -47,6 +49,7 @@ public class Incident implements Serializable {
      * @param id the id to set
      */
     public void setId(Long id) {
+
         this.id = id;
     }
 
@@ -54,6 +57,7 @@ public class Incident implements Serializable {
      * @return the title
      */
     public String getTitle() {
+
         return title;
     }
 
@@ -61,6 +65,7 @@ public class Incident implements Serializable {
      * @param title the title to set
      */
     public void setTitle(String title) {
+
         this.title = title;
     }
 
@@ -68,6 +73,7 @@ public class Incident implements Serializable {
      * @return the description
      */
     public String getDescription() {
+
         return description;
     }
 
@@ -75,6 +81,7 @@ public class Incident implements Serializable {
      * @param description the description to set
      */
     public void setDescription(String description) {
+
         this.description = description;
     }
 
@@ -82,6 +89,7 @@ public class Incident implements Serializable {
      * @return the value
      */
     public BigDecimal getValue() {
+
         return value;
     }
 
@@ -89,6 +97,7 @@ public class Incident implements Serializable {
      * @param value the value to set
      */
     public void setValue(BigDecimal value) {
+
         this.value = value;
     }
 
@@ -96,6 +105,7 @@ public class Incident implements Serializable {
      * @return the ong
      */
     public ONG getOng() {
+
         return ong;
     }
 
@@ -103,6 +113,7 @@ public class Incident implements Serializable {
      * @param ong the ong to set
      */
     public void setOng(ONG ong) {
+
         this.ong = ong;
     }
 }

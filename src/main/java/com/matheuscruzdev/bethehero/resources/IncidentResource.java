@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
@@ -15,7 +16,6 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.google.common.base.Strings;
 import com.matheuscruzdev.bethehero.domain.repositories.contracts.IncidentRepository;
 import com.matheuscruzdev.bethehero.domain.repositories.contracts.ONGRepository;
 import com.matheuscruzdev.bethehero.resources.dtos.IncidentDTO;
@@ -35,23 +35,15 @@ public class IncidentResource {
   ONGRepository ONGRepository;
 
   @GET
-  public Response listAll(@QueryParam(value = "page") Integer page,
-      @HeaderParam("Authorization") String authorization) {
+  public Response listAll(@QueryParam("page") @DefaultValue("1") final int page) {
 
-    if (Strings.isNullOrEmpty(authorization)) {
-      
-      return Response.status(Response.Status.UNAUTHORIZED).build();
-    }
+    var incidents = incidentRepository.getAll(page);
+    var count = incidentRepository.countIncidents();
 
-    if (page == null) {
-      page = Integer.valueOf(1);
-    }
-
-    var incidents = incidentRepository.getPageByOngId(page, authorization);
-
-    var count = incidentRepository.countIncidentsByOngId(authorization);
-
-    return Response.status(Response.Status.OK).entity(incidents).header("X-Total-Count", count).build();
+    return Response.status(Response.Status.OK)
+      .entity(incidents)
+      .header("X-Total-Count", count)
+      .build();
   }
 
   @POST

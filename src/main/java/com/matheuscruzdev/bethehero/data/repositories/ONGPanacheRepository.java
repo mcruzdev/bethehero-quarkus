@@ -17,25 +17,30 @@ public class ONGPanacheRepository implements PanacheRepository<ONG>, ONGReposito
 
     @Override
     public ONG getById(final String id) {
+
         return find("id", id).firstResult();
     }
 
     @Override
     public void insert(final ONG ong) {
+
         persist(ong);
     }
 
     @Override
     public List<ONG> getAll() {
+
         return findAll().list();
     }
 
     @Override
     public void delete(String id) {
+
         delete("id", id);
     }
 
     public Optional<ONG> getNameAndIdById(String id) {
+
         return findAll().stream()
             .filter(ong -> ong.getId().equals(id))
             .map(ong -> ONG.from(ong.getId(), ong.getName()))
