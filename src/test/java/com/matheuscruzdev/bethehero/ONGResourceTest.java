@@ -40,8 +40,8 @@ public class ONGResourceTest {
 
     @Test
     @Order(2)
-    @DataSet("ong.json")
-    @ExpectedDataSet(value = "ong-create.json", ignoreCols = "id")
+    @DataSet(value = "ong-create-set.json")
+    @ExpectedDataSet(value = "ong-create-expect.json", ignoreCols = "id")
     public void create() throws JsonProcessingException {
 
         var mapper = new ObjectMapper();
